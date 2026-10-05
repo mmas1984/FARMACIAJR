@@ -9,30 +9,91 @@
     <meta property="og:description" content="Sistema de gestão de medicamentos para farmácia hospitalar, focado no controle estrito de psicotrópicos e entorpecentes." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-  </head>
-  <body class="bg-slate-950 text-slate-100">
-    <div id="root"></div>
+    <link rel="stylesheet" crossorigin href="./assets/index.css" />
 
-    <!-- Ponto de entrada padrão do Vite (usado no preview do AI Studio e no build) -->
-    <script type="module" src="/src/main.tsx"></script>
-
-    <!-- Fallback automático apenas para GitHub Pages se servido estaticamente da raiz -->
+    <!-- Tratamento dinâmico de caminho base para GitHub Pages -->
     <script>
       (function() {
-        if (window.location.hostname.endsWith('github.io') && !document.querySelector('script[src*="assets/index.js"]')) {
-          var s = document.createElement('script');
-          s.type = 'module';
-          s.crossOrigin = 'anonymous';
-          s.src = './assets/index.js';
-          document.body.appendChild(s);
-
-          var c = document.createElement('link');
-          c.rel = 'stylesheet';
-          c.crossOrigin = 'anonymous';
-          c.href = './assets/index.css';
-          document.head.appendChild(c);
+        if (window.location.hostname.endsWith('github.io')) {
+          var pathname = window.location.pathname;
+          // Se não houver barra no final e for um repositório (ex: /repo), redireciona com barra
+          if (!pathname.endsWith('/') && !pathname.includes('.')) {
+            window.location.replace(pathname + '/' + window.location.search + window.location.hash);
+            return;
+          }
+          // Injeta a tag base para garantir resolução de ./assets/
+          var segs = pathname.split('/').filter(Boolean);
+          var basePath = segs.length > 0 ? '/' + segs[0] + '/' : '/';
+          if (!document.querySelector('base')) {
+            var b = document.createElement('base');
+            b.href = basePath;
+            document.head.appendChild(b);
+          }
         }
       })();
+    </script>
+
+    <!-- Monitor global contra tela branca -->
+    <script>
+      window.addEventListener('error', function(e) {
+        var statusEl = document.getElementById('loading-status');
+        if (statusEl) {
+          statusEl.style.color = '#f87171';
+          statusEl.textContent = 'Erro ao inicializar: ' + (e.message || 'Falha ao carregar scripts');
+        }
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        var statusEl = document.getElementById('loading-status');
+        if (statusEl) {
+          statusEl.style.color = '#f87171';
+          statusEl.textContent = 'Falha de inicialização: ' + (e.reason?.message || e.reason || 'Erro assíncrono');
+        }
+      });
+    </script>
+  </head>
+  <body class="bg-slate-950 text-slate-100" style="margin: 0; background-color: #020617; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    <div id="root">
+      <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #020617; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 1.5rem; text-align: center;">
+        <div style="width: 44px; height: 44px; border: 3px solid #1e293b; border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem;"></div>
+        <h2 style="font-size: 1.15rem; font-weight: bold; margin: 0 0 0.5rem 0; color: #60a5fa;">Farmacêutico Sales Júnior</h2>
+        <p id="loading-status" style="font-size: 0.85rem; color: #94a3b8; margin: 0;">Iniciando sistema de farmácia hospitalar...</p>
+      </div>
+      <style>
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      </style>
+    </div>
+
+    <!-- Script de inicialização compatível com Dev (Vite) e Produção (GitHub Pages) -->
+    <script type="module">
+      const isGh = window.location.hostname.endsWith('github.io');
+
+      if (!isGh) {
+        // No ambiente do AI Studio (Preview / Dev)
+        import('/src/main.tsx');
+      } else {
+        // No ambiente estático do GitHub Pages
+        const segs = window.location.pathname.split('/').filter(Boolean);
+        const prefix = (segs.length > 0 ? '/' + segs[0] : '') + '/assets/';
+
+        // Carrega CSS se ainda não inserido
+        if (!document.querySelector('link[href*="index.css"]')) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = prefix + 'index.css';
+          document.head.appendChild(link);
+        }
+
+        // Importa o bundle compilado
+        const load = new Function('u', 'return import(u)');
+        load(prefix + 'index.js').catch(function(err) {
+          console.error('Falha ao importar bundle do GitHub Pages:', err);
+          const statusEl = document.getElementById('loading-status');
+          if (statusEl) {
+            statusEl.style.color = '#f87171';
+            statusEl.textContent = 'Erro ao carregar arquivos do sistema. Verifique a conexão.';
+          }
+        });
+      }
     </script>
   </body>
 </html>
