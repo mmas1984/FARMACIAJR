@@ -1,0 +1,6 @@
+{
+  "name": "FarmaSys S.V.P.",
+  "description": "Sistema de gestão de medicamentos, focado no controle estrito de psicotrópicos e entorpecentes (Portaria 344/98 - Anvisa).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

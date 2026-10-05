@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Farmacêutico Sales Júnior - Redirecionando...</title>
+    <script type="text/javascript">
+      // GitHub Pages SPA Hash Redirect Handler
+      // Redireciona qualquer sub-rota inexistente (ex: /medications) para o roteador com hash (/#/medications)
+      // evitando erros 404 em navegações diretas e F5/recarregamento.
+      (function() {
+        var l = window.location;
+        var pathname = l.pathname;
+        var segments = pathname.split('/').filter(Boolean);
+        var isGithubIo = l.hostname.endsWith('github.io');
+        
+        var base = '/';
+        var route = '';
+
+        if (isGithubIo && segments.length > 0) {
+          // No GitHub Pages com repositório em subdiretório: https://usuario.github.io/repo-name/
+          base = '/' + segments[0] + '/';
+          route = segments.slice(1).join('/');
+        } else {
+          // Em domínio customizado ou na raiz
+          route = segments.join('/');
+        }
+
+        var redirectUrl = l.protocol + '//' + l.host + base + (route ? '#/' + route : '') + (l.search || '') + (l.hash || '');
+        window.location.replace(redirectUrl);
+      })();
+    </script>
+  </head>
+  <body style="font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #0f172a; color: #94a3b8;">
+    <div style="text-align: center;">
+      <h2 style="color: #38bdf8; margin-bottom: 0.5rem;">Carregando Sistema Farmacêutico...</h2>
+      <p style="font-size: 0.9rem;">Redirecionando para a rota solicitada.</p>
+    </div>
+  </body>
+</html>

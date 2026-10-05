@@ -1,0 +1,137 @@
+{
+  "collaborators": [
+    {
+      "id": "col-001",
+      "name": "Farmacêutico Sales Júnior",
+      "cpf": "012.345.678-90",
+      "role": "Farmacêutico Coordenador",
+      "crf": "CRF-SP 48.912",
+      "accessLevel": "Pharmacist"
+    },
+    {
+      "id": "col-002",
+      "name": "Enf. Juliana Mendes",
+      "cpf": "987.654.321-11",
+      "role": "Enfermeira Chefe da Ala Psiquiátrica",
+      "crf": "COREN-SP 214.509",
+      "accessLevel": "Nurse"
+    },
+    {
+      "id": "col-003",
+      "name": "Dr. Roberto Fontes",
+      "cpf": "333.444.555-66",
+      "role": "Médico Psiquiatra Plantonista",
+      "crf": "CRM-SP 109.832",
+      "accessLevel": "Admin"
+    }
+  ],
+  "units": [
+    {
+      "id": "unit-001",
+      "name": "Dispensário Central de Farmácia",
+      "location": "Térreo - Pavilhão Central",
+      "responsible": "Farmacêutico Sales Júnior"
+    },
+    {
+      "id": "unit-002",
+      "name": "Ala Masculina (Internação Aguda)",
+      "location": "1º Andar - Bloco A",
+      "responsible": "Enf. Juliana Mendes"
+    },
+    {
+      "id": "unit-003",
+      "name": "Ala Feminina (Estabilização)",
+      "location": "2º Andar - Bloco B",
+      "responsible": "Enf. Carolina Prado"
+    },
+    {
+      "id": "unit-004",
+      "name": "Emergência Psiquiátrica & Triagem",
+      "location": "Térreo - Setor Vermelho",
+      "responsible": "Dr. Roberto Fontes"
+    }
+  ],
+  "medications": [
+    {
+      "id": "med-001",
+      "currentStock": 140,
+      "name": "Haloperidol 5mg",
+      "activeIngredient": "Haloperidol",
+      "dosage": "5mg",
+      "manufacturer": "Janssen-Cilag",
+      "atcCode": "N05AD01",
+      "specialControlGroup": "C"
+    },
+    {
+      "id": "med-002",
+      "currentStock": 45,
+      "name": "Clonazepam 2mg (Rivotril)",
+      "activeIngredient": "Clonazepam",
+      "dosage": "2mg",
+      "manufacturer": "Roche",
+      "atcCode": "N05BA09",
+      "specialControlGroup": "B"
+    },
+    {
+      "id": "med-003",
+      "currentStock": 8,
+      "name": "Diazepam 10mg/2ml Inj.",
+      "activeIngredient": "Diazepam",
+      "dosage": "10mg/2ml",
+      "manufacturer": "União Química",
+      "atcCode": "N05BA01",
+      "specialControlGroup": "B"
+    },
+    {
+      "id": "med-004",
+      "currentStock": 12,
+      "name": "Sulfato de Morfina 10mg/ml",
+      "activeIngredient": "Morfina",
+      "dosage": "10mg/ml",
+      "manufacturer": "Cristália",
+      "atcCode": "N02AA01",
+      "specialControlGroup": "A"
+    },
+    {
+      "id": "med-005",
+      "currentStock": 95,
+      "name": "Risperidona 2mg",
+      "activeIngredient": "Risperidona",
+      "dosage": "2mg",
+      "manufacturer": "Eurofarma",
+      "atcCode": "N05AX08",
+      "specialControlGroup": "C"
+    },
+    {
+      "id": "med-006",
+      "currentStock": 60,
+      "name": "Clorpromazina 100mg (Amplictil)",
+      "activeIngredient": "Clorpromazina",
+      "dosage": "100mg",
+      "manufacturer": "Sanofi",
+      "atcCode": "N05AA01",
+      "specialControlGroup": "C"
+    }
+  ],
+  "movements": [],
+  "users": [
+    {
+      "id": "usr-coord-01",
+      "name": "Farmacêutico Sales Júnior",
+      "username": "coordenador",
+      "password": "admin123",
+      "role": "COORDENADOR",
+      "createdAt": "2026-10-05T11:41:13.639Z",
+      "lastLogin": "2026-10-05T11:41:19.045Z"
+    },
+    {
+      "id": "usr-oper-01",
+      "name": "Enf. Juliana Mendes",
+      "username": "operador",
+      "password": "user123",
+      "role": "USUARIO",
+      "createdAt": "2026-10-05T11:41:13.640Z",
+      "lastLogin": "2026-10-05T11:41:25.541Z"
+    }
+  ]
+}
